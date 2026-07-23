@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Monitoreo Energético - Grupo 5</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header>
+    <h1>DATAWATT</h1>
+    <p>Universidad Técnica de Machala - Grupo 5</p>
+  </header>
+
+  <div class="contenedor">
+
+    <!-- ===================== MENÚ ===================== -->
+    <nav id="menu">
+      <button class="opcion-menu activo" data-seccion="config">1. Configuración</button>
+      <button class="opcion-menu" data-seccion="registrar">2. Registrar consumo</button>
+      <button class="opcion-menu" data-seccion="actualizar">3. Actualizar equipo</button>
+      <button class="opcion-menu" data-seccion="historial">4. Historial</button>
+      <button class="opcion-menu" data-seccion="estadistica">5. Estadística general</button>
+      <button class="opcion-menu" data-seccion="procedimiento">6. Procedimiento matemático</button>
+      <button class="opcion-menu" data-seccion="clasificacion">7. Clasificación y tendencia</button>
+      <button class="opcion-menu" data-seccion="ranking">8. Ranking de consumo</button>
+      <button class="opcion-menu" data-seccion="recomendaciones">9. Recomendaciones</button>
+      <button class="opcion-menu" data-seccion="alertas">10. Alertas</button>
+      <button class="opcion-menu" data-seccion="simulacion">11. Simulación</button>
+      <button class="opcion-menu" data-seccion="costo">12. Costo económico</button>
+      <button class="opcion-menu" data-seccion="exportar">13. Exportar reporte</button>
+    </nav>
+
+    <!-- ===================== CONTENIDO ===================== -->
+    <main id="contenido">
+
+      <!-- 1. CONFIGURACIÓN -->
+      <section id="config" class="seccion visible">
+        <h2>Configuración del sistema</h2>
+        <div class="fila">
+          <label>N° de equipos/áreas (máx 15):
+            <input type="number" id="cfgNumEquipos" min="1" max="15" value="5">
+          </label>
+          <label>N° de periodos (máx 31):
+            <input type="number" id="cfgNumPeriodos" min="1" max="31" value="5">
+          </label>
+          <label>Tarifa ($/kWh):
+            <input type="number" id="cfgTarifa" min="0" step="0.01" value="0.10">
+          </label>
+        </div>
+        <button onclick="generarCamposConfig()">Generar campos de nombres</button>
+        <div id="cfgNombres"></div>
+        <button onclick="aplicarConfig()">Aplicar configuración</button>
+      </section>
+
+      <!-- 2. REGISTRAR CONSUMO -->
+      <section id="registrar" class="seccion">
+        <h2>Registrar consumo semanal</h2>
+        <button onclick="generarFormularioRegistro()">Generar formulario</button>
+        <div id="registroForm"></div>
+        <button id="btnGuardarRegistro" class="oculto" onclick="guardarRegistro()">Guardar registro</button>
+      </section>
+
+      <!-- 3. ACTUALIZAR EQUIPO -->
+      <section id="actualizar" class="seccion">
+        <h2>Actualizar consumo de un equipo</h2>
+        <label>Equipo:
+          <select id="selEquipoActualizar" onchange="generarFormularioActualizar()"></select>
+        </label>
+        <div id="actualizarForm"></div>
+        <button id="btnGuardarActualizacion" class="oculto" onclick="guardarActualizacion()">Guardar cambios</button>
+      </section>
+
+      <!-- 4. HISTORIAL -->
+      <section id="historial" class="seccion">
+        <h2>Historial de consumos por periodo</h2>
+        <button onclick="mostrarHistorial()">Mostrar historial</button>
+        <div id="historialResultado"></div>
+      </section>
+
+      <!-- 5. ESTADÍSTICA GENERAL -->
+      <section id="estadistica" class="seccion">
+        <h2>Estadística descriptiva general</h2>
+        <button onclick="mostrarEstadistica()">Mostrar estadísticas</button>
+        <div id="estadisticaResultado"></div>
+      </section>
+
+      <!-- 6. PROCEDIMIENTO MATEMÁTICO -->
+      <section id="procedimiento" class="seccion">
+        <h2>Procedimiento matemático (fórmulas)</h2>
+        <button onclick="mostrarProcedimiento()">Mostrar procedimiento</button>
+        <div id="procedimientoResultado"></div>
+      </section>
+
+      <!-- 7. CLASIFICACIÓN Y TENDENCIA -->
+      <section id="clasificacion" class="seccion">
+        <h2>Clasificación automática y tendencia</h2>
+        <button onclick="mostrarClasificacion()">Mostrar clasificación</button>
+        <div id="clasificacionResultado"></div>
+      </section>
+
+      <!-- 8. RANKING -->
+      <section id="ranking" class="seccion">
+        <h2>Ranking de equipos por consumo</h2>
+        <button onclick="mostrarRanking()">Mostrar ranking</button>
+        <div id="rankingResultado"></div>
+      </section>
+
+      <!-- 9. RECOMENDACIONES -->
+      <section id="recomendaciones" class="seccion">
+        <h2>Recomendaciones del sistema</h2>
+        <button onclick="mostrarRecomendaciones()">Mostrar recomendaciones</button>
+        <div id="recomendacionesResultado"></div>
+      </section>
+
+      <!-- 10. ALERTAS -->
+      <section id="alertas" class="seccion">
+        <h2>Alertas generadas</h2>
+        <button onclick="mostrarAlertas()">Mostrar alertas</button>
+        <div id="alertasResultado"></div>
+      </section>
+
+      <!-- 11. SIMULACIÓN -->
+      <section id="simulacion" class="seccion">
+        <h2>Modo simulación</h2>
+        <p>Genera datos aleatorios de estado y consumo para todos los equipos.</p>
+        <button onclick="simular()">Generar datos aleatorios</button>
+        <div id="simulacionResultado"></div>
+      </section>
+
+      <!-- 12. COSTO ECONÓMICO -->
+      <section id="costo" class="seccion">
+        <h2>Costo económico estimado</h2>
+        <button onclick="mostrarCosto()">Mostrar costo</button>
+        <div id="costoResultado"></div>
+      </section>
+
+      <!-- 13. EXPORTAR REPORTE -->
+      <section id="exportar" class="seccion">
+        <h2>Exportar reporte</h2>
+        <label>Formato:
+          <select id="expFormato">
+            <option value="txt">Texto (.txt)</option>
+            <option value="csv">CSV (.csv)</option>
+          </select>
+        </label>
+        <label>Nombre del archivo:
+          <input type="text" id="expNombre" value="reporte_energetico">
+        </label>
+        <button onclick="exportarReporte()">Descargar reporte</button>
+      </section>
+
+      <!-- ===================== MENSAJES / RESULTADOS GENERALES ===================== -->
+      <div id="mensaje" class="mensaje"></div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

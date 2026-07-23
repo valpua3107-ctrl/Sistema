@@ -1,0 +1,165 @@
+/* ===================== BASE ===================== */
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #eef2f5;
+  color: #2b2f38;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #3b6ea5;
+  color: #ffffff;
+  padding: 18px 24px;
+  text-align: center;
+}
+
+header h1 { margin: 0 0 4px 0; font-size: 22px; }
+header p { margin: 0; font-size: 13px; opacity: 0.9; }
+
+/* ===================== LAYOUT PRINCIPAL ===================== */
+.contenedor {
+  display: flex;
+  max-width: 1100px;
+  margin: 20px auto;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+/* ===================== MENÚ LATERAL ===================== */
+#menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.opcion-menu {
+  background-color: #ffffff;
+  border: 1px solid #c7d0da;
+  border-radius: 4px;
+  padding: 9px 10px;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  color: #2b2f38;
+}
+
+.opcion-menu:hover { background-color: #dce7f2; }
+
+.opcion-menu.activo {
+  background-color: #3b6ea5;
+  color: #ffffff;
+  border-color: #3b6ea5;
+}
+
+/* ===================== CONTENIDO ===================== */
+#contenido {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #c7d0da;
+  border-radius: 4px;
+  padding: 20px;
+  min-width: 0;
+}
+
+.seccion { display: none; }
+.seccion.visible { display: block; }
+
+.seccion h2 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #3b6ea5;
+  border-bottom: 1px solid #dce7f2;
+  padding-bottom: 8px;
+}
+
+/* ===================== FORMULARIOS ===================== */
+label {
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 10px 10px 0;
+}
+
+input, select {
+  display: block;
+  margin-top: 3px;
+  padding: 5px 6px;
+  border: 1px solid #b7c1cc;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.fila { display: flex; flex-wrap: wrap; gap: 10px; }
+
+button {
+  background-color: #3b6ea5;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 6px 6px 6px 0;
+}
+
+button:hover { background-color: #2f5883; }
+
+.oculto { display: none; }
+
+/* ===================== TABLAS ===================== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+th, td {
+  border: 1px solid #d3dbe4;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+th { background-color: #eef2f5; }
+
+/* ===================== BLOQUES DE EQUIPO EN FORMULARIOS ===================== */
+.bloque-equipo {
+  border: 1px solid #dce7f2;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8fafc;
+}
+
+.bloque-equipo h4 { margin: 0 0 6px 0; font-size: 14px; }
+
+.aviso-umbral { color: #b06a00; font-size: 12px; margin-left: 6px; }
+
+/* ===================== ÁREA DE MENSAJES ===================== */
+.mensaje {
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: pre-line;
+}
+
+.mensaje.ok { background-color: #e3f3e6; color: #256a34; border: 1px solid #bfe3c6; }
+.mensaje.error { background-color: #fbe4e2; color: #a13a30; border: 1px solid #f2c2bd; }
+.mensaje.vacio { display: none; }
+
+/* ===================== ETIQUETAS DE CLASIFICACIÓN ===================== */
+.clase-CRITICO { color: #b23327; font-weight: bold; }
+.clase-ALTO { color: #b06a00; font-weight: bold; }
+.clase-NORMAL { color: #256a34; }
+.clase-BAJO { color: #3b6ea5; }
+
+/* ===================== RESPONSIVE SIMPLE ===================== */
+@media (max-width: 800px) {
+  .contenedor { flex-direction: column; }
+  #menu { width: 100%; flex-direction: row; flex-wrap: wrap; }
+}
